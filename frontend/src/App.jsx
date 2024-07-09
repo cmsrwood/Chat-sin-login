@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import io from 'socket.io-client'
 import Chat from './pages/Chat'
+import { BACKEND_URL, FRONTEND_URL } from './config';
 
-const socket = io.connect("http://localhost:3001")
+const socket = io.connect(BACKEND_URL)
 
 function App() {
   const [username, setUsername] = useState("")

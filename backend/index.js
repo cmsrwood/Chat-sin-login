@@ -2,6 +2,7 @@ const express = require ("express")
 const app = express()
 const http = require('http')
 const cors = require('cors')
+const { FRONTEND_URL, BACKEND_URL, BACKEND_PORT } = require("./config.js");
 
 app.use(cors())
 const server = http.createServer(app)
@@ -10,7 +11,7 @@ const {Server} = require('socket.io')
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: FRONTEND_URL,
         methods: ["GET", "POST"]
     }
 })
@@ -32,7 +33,7 @@ io.on('connection', (socket) => {
     })
 })
 
-server.listen (3001, () => {
-    console.log("Server listening on port 3001")
+server.listen (BACKEND_PORT, () => {
+    console.log(`Server has started on port ${BACKEND_PORT}`)
 })
 
